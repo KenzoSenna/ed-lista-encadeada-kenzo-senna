@@ -33,7 +33,7 @@ class LinkedList:
         self._size += 1
 
     def size(self):
-        return self._size
+        return print(f"{self._size}")
 
     def is_empty(self):
         return self.head is None
@@ -81,11 +81,17 @@ class LinkedList:
             ponteiro = ponteiro.next
 
         print(" --> ".join(valores))
-        
-    # def insert_beginning(self, element):
-    #     if self.head:
-    #         ponteiro = self.head
-    #         while(ponteiro.next != None):
 
-    #             ponteiro = ponteiro.next
-                
+try:
+    lista = LinkedList()
+    lista.insert_beginning(10)
+    lista.insert_beginning(5)
+    lista.insert_end(20)
+    lista.insert_end(30)
+    lista.size()
+    print(lista.is_empty())
+    lista.remove(123)
+    lista.search(23040)
+    lista.print_list()
+except Exception as err:
+    print(f"deu pra testar não pai, isso daí aconteceu: \n{err}")
