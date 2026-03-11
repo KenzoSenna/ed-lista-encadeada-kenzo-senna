@@ -32,14 +32,33 @@ class LinkedList:
 
         self._size += 1
 
+    def insert_middle(self, index, element):
+        if index > self.size():
+            print(f"O escopo da função é inserir entre o começo e o fim da lista encadeada.\n O index inserido foi de {index}, ultrapassando o size de {self.size()}")
+        if index == 0:
+            self.insert_beginning(element)
+            return
+
+        ponteiro = self.head
+        counter = 0
+
+        while ponteiro and counter < index - 1:
+            ponteiro = ponteiro.next
+            counter += 1
+
+        if ponteiro:
+            novo = Node(element)
+            novo.next = ponteiro.next
+            ponteiro.next = novo
+            self._size += 1
+
     def size(self):
-        return print(f"{self._size}")
+        return self._size
 
     def is_empty(self):
         return self.head is None
 
     def search(self, valor):
-
         ponteiro = self.head
 
         while ponteiro:
@@ -88,7 +107,9 @@ try:
     lista.insert_beginning(5)
     lista.insert_end(20)
     lista.insert_end(30)
+    lista.insert_middle(34, 12)
     lista.size()
+    
     print(lista.is_empty())
     lista.remove(123)
     lista.search(23040)
