@@ -59,6 +59,7 @@ class LinkedList:
         return self.head is None
 
     def search(self, valor):
+        
         ponteiro = self.head
 
         while ponteiro:
@@ -66,15 +67,17 @@ class LinkedList:
                 return True
 
             ponteiro = ponteiro.next
-
+        print("O valor passado não foi encontrado dentro da lista encadeada.")
         return False
 
-    def remove(self, valor):
-
+    def remove(self, valor_index):
+        if self.size() < valor_index + 1:
+            return print(f"Impossível remover o {valor_index + 1}° valor de uma lista com somente {self.size()} elemento(s).")
+        contador = 0
         if not self.head:
             return
-
-        if self.head.data == valor:
+        if contador == valor_index:
+            print(f"Valor do index {valor_index} = {self.head.data} removido com sucesso!")
             self.head = self.head.next
             self._size -= 1
             return
@@ -83,11 +86,12 @@ class LinkedList:
 
         while ponteiro.next:
 
-            if ponteiro.next.data == valor:
+            if contador == valor_index - 1:
+                print(f"Valor do index {valor_index} = {ponteiro.next.data} removido com sucesso!")
                 ponteiro.next = ponteiro.next.next
                 self._size -= 1
                 return
-
+            contador += 1
             ponteiro = ponteiro.next
 
     def print_list(self):
@@ -114,5 +118,11 @@ try:
     lista.remove(123)
     lista.search(23040)
     lista.print_list()
+    lista.remove(0)
+    lista.remove(2)
+    lista.remove(1)
+    lista.remove(1)
+    lista.print_list()
+    
 except Exception as err:
     print(f"deu pra testar não pai, isso daí aconteceu: \n{err}")
